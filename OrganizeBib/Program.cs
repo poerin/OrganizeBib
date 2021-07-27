@@ -9,20 +9,20 @@ namespace OrganizeBib
 {
     class Program
     {
-        // author,editor,title,(booktitle|journal),(publisher|institution|school),year,volume,number,chapter,pages,edition
+        // author,title,(booktitle|journal),(publisher|institution|school),year,volume,number,chapter,pages,edition
         static Dictionary<string, List<string>> Entries = new Dictionary<string, List<string>> {
             { "article", new List<string> {"author", "title", "journal", "year", "volume", "number", "pages"}},
-            { "book", new List<string> {"author", "editor", "title", "publisher", "year", "volume", "number", "edition"}},
+            { "book", new List<string> {"author", "title", "publisher", "year", "volume", "number", "edition"}},
             { "booklet", new List<string> {"author", "title", "year"}},
-            { "conference", new List<string> {"author", "editor", "title", "booktitle", "publisher", "year", "volume", "number", "pages"}},
-            { "inbook", new List<string> {"author", "editor", "title", "publisher", "year", "volume", "number", "chapter", "pages", "edition"}},
-            { "incollection", new List<string> {"author", "editor", "title", "booktitle", "publisher", "year", "volume", "number", "chapter", "pages", "edition"}},
-            { "inproceedings", new List<string> {"author", "editor", "title", "booktitle", "publisher", "year", "volume", "number", "pages"}},
+            { "conference", new List<string> {"author", "title", "booktitle", "publisher", "year", "volume", "number", "pages"}},
+            { "inbook", new List<string> {"author", "title", "publisher", "year", "volume", "number", "chapter", "pages", "edition"}},
+            { "incollection", new List<string> {"author", "title", "booktitle", "publisher", "year", "volume", "number", "chapter", "pages", "edition"}},
+            { "inproceedings", new List<string> {"author", "title", "booktitle", "publisher", "year", "volume", "number", "pages"}},
             { "manual", new List<string> {"author", "title", "year", "edition"}},
             { "mastersthesis", new List<string> {"author", "title", "school", "year"}},
             { "misc", new List<string> {"author", "title", "year"}},
             { "phdthesis", new List<string> {"author", "title", "school", "year"}},
-            { "proceedings", new List<string> {"editor", "title", "publisher", "year", "volume", "number"}},
+            { "proceedings", new List<string> {"title", "publisher", "year", "volume", "number"}},
             { "techreport", new List<string> {"author", "title", "institution", "year", "number"}},
             { "unpublished", new List<string> {"author", "title", "year", "note"}}
         };
@@ -73,7 +73,7 @@ namespace OrganizeBib
 
                  string result = "";
 
-                 if (field == "author" || field == "editor")
+                 if (field == "author")
                  {
                      List<string> authors = new List<string>();
                      foreach (Match matchAuthor in Regex.Matches(content, @"([\s\S]+?)(\sand\s|$)"))
